@@ -1,0 +1,5 @@
+
+(function($){$.fn.modalWindow=function(options){options=$.extend({"openTrigger":".trigger","closeTrigger":".closeBtn","modalContent":".modalContent","overLay":"overLay","width":500,"height":500,"feadSpeed":500,},options);$(window).resize(function(){$(options.modalContent).css({top:'20px',left:($(window).width()/2-currentModal.outerWidth()/2+$(window).scrollLeft()),});});$(options.openTrigger).on('click',function(){if($(options.openTrigger).length>1){getModal=this.getAttribute('data-modal');currentModal=$('.'+getModal);}else{currentModal=$(options.modalContent);}
+openModal();$(window).resize();scrollModal();closeModal(options.closeTrigger);});function openModal(){$('body').append('<div id="'+options.overLay+'"></div>');currentModal.fadeIn(options.fadeSpeed);$(options.modalContent).css({width:options.width,height:options.height,});}
+function scrollModal(){$(window).scroll('on',function(){$(options.modalContent).css('position','fixed');});}
+function closeModal(closeObj){$(closeObj).on('click',function(){$(options.modalContent).fadeOut(options.feadSpeed);$('div#'+options.overLay).fadeOut(options.fadeSpeed,function(){$(this).remove();});});}}})(jQuery);
